@@ -38,7 +38,21 @@ function vaciarCarritoConTotal() {
     ];
 
     // Completa aquí código de escenario 1
+
+    while (carrito.length > 0) {
+        // Utiliza shift() para obtener y eliminar el primer elemento del carrito
+        const producto = carrito.shift();
+        
+        // Suma el precio del producto al total
+        total += producto.precio;
+    }
+
+    // Imprime en consola el resultado
+    console.log([], total);
 }
+
+// Llamada a la función para probarla
+vaciarCarritoConTotal();
 
 /*
     ESCENARIO 2 : UNIFICANDO GRUPOS DE ESTUDIANTES
@@ -56,7 +70,16 @@ function cuentaDeAlumnos() {
     const grupoB = ["Alejandro Ruiz","Carmen Ortega","Roberto Mendoza","Patricia Vargas","Eduardo Morales","Olga Reyes","Gustavo Paredes","Natalia Soto","Hector Delgado","Monica Castillo","Raul Rios","Raquel Valdez","Fernando Acosta","Silvia Castro","Manuel Vega","Lourdes Guzman","Jorge Navarro"]
 
     // Completa aquí código de Escenario 2
+
+    // Utiliza concat() para combinar los dos grupos en un nuevo arreglo
+    const grupoUnificado = grupoA.concat(grupoB);
+
+    // Imprime en consola el resultado (la cantidad de alumnos)
+    console.log(grupoUnificado.length);
 }
+
+// Llamada a la función para probarla
+cuentaDeAlumnos();
 
 /*
     ESCENARIO 3 : BACKUP POR BATCH / LOTE
@@ -81,9 +104,17 @@ function transmitiendoBatch() {
     "DDDDDDDDDDDD","11010100101","01010101010","11110000000","00001111000","10101010101","11001100110","00110011001","11111111111","00000000000","10000000000","01000000000","11000000000","00100000000","10100000000","01100000000","11100000000","00010000000","10010000000","01010000000","11010000000","00110000000","10110000000","01110000000","11110000000","00001000000","10001000000","01001000000","11001000000","00101000000","10101000000","01101000000","11101000000","00011000000","10011000000","01011000000","11011000000","00111000000","10111000000","01111000000","11111000000","00000100000","10000100000","01000100000","11000100000","00100100000","10100100000","01100100000","11100100000","00010100000"];
 
     // Completa aquí código de Escenario 3
+
+    // Número de elementos por lote
+    const elementosPorLote = backup.length / 4;
+
+    // Utiliza slice() para mostrar en lotes y muestra en consola
+    for (let i = 0; i < 4; i++) {
+        const lote = backup.slice(i * elementosPorLote, (i + 1) * elementosPorLote);
+        console.log(lote, elementosPorLote);
+    }
 }
 
-//vaciarCarritoConTotal()
-//cuentaDeAlumnos()
-//transmitiendoBatch()
+// Llamada a la función para probarla
+transmitiendoBatch();
 
