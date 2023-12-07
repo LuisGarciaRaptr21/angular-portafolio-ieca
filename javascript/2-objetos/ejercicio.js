@@ -21,9 +21,20 @@
 const juegos = {
     aguila: 0,
     sol: 1,
-    tirarMoneda: undefined
+    tirarMoneda: function() {
+        // Generar un valor aleatorio (0 o 1)
+        const resultado = Math.floor(Math.random() * 2);
+
+        // Determinar el resultado y mostrar el mensaje correspondiente
+        if (resultado === this.aguila) {
+            console.log("Cae águila 🦅");
+        } else {
+            console.log("Cae sol 🌞");
+        }
+    }
 }
 
+// Realizar 10 lanzamientos de la moneda
 for (let tiros = 0; tiros < 10; tiros++) {
-    // juegos.tirarMoneda()
+    juegos.tirarMoneda();
 }

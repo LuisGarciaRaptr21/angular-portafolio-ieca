@@ -12,11 +12,11 @@
 
 class ListaNumeros {
     constructor(numeros) {
-        this._numeros = numeros
+        this._numeros = numeros;
     }
 
     get numeros() {
-        return this._numeros
+        return this._numeros;
     }
 
     numerosMayoresAMedia() {
@@ -25,11 +25,14 @@ class ListaNumeros {
             Se utiliza para crear un nuevo array reteniendo solo los elementos que cumplan con una condición específica
             La condición debe devolver `true` o `false`
         */
-       
-        // Calculo de la media
-        const media = this.numeros.reduce((a, b) => a + b, 0) / this.numeros.length
 
-        // COMPLETA AQUÍ CÓDIGO CON MÉTODO .filter
+        // Calculo de la media
+        const media = this.numeros.reduce((a, b) => a + b, 0) / this.numeros.length;
+
+        // Filtrar los números mayores a la media
+        const mayoresAMedia = this.numeros.filter(numero => numero > media);
+
+        console.log(mayoresAMedia);
     }
 
     ordenamientoMayorAMenor() {
@@ -41,13 +44,13 @@ class ListaNumeros {
             this.numeros.sort((a, b))
         */
 
-        // COMPLETA AQUÍ CÓDIGO CON MÉTODO .sort
+        // Ordenar de mayor a menor
+        this.numeros.sort((a, b) => b - a);
 
-        console.log(this.numeros)
+        console.log(this.numeros);
     }
-    
 }
 
-const misNumeros = new ListaNumeros([1,5,3,4,2,6,8,10,9,7])
-misNumeros.numerosMayoresAMedia()
-misNumeros.ordenamientoMayorAMenor()
+const misNumeros = new ListaNumeros([1, 5, 3, 4, 2, 6, 8, 10, 9, 7]);
+misNumeros.numerosMayoresAMedia();
+misNumeros.ordenamientoMayorAMenor();

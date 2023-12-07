@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -7,7 +8,7 @@
 <body>
     <div style="display: flex">
         <input type="text" id="inputEncabezado" placeholder="Ingresa el nuevo encabezado"
-        style="width:70%;margin-bottom:10px" />
+            style="width:70%;margin-bottom:10px" />
     </div>
     <div style="display: flex">
         <button id="btnActualizacion" onClick="modificarEncabezado()" style="margin-right: 10px">Establecer Encabezado</button>
@@ -16,31 +17,47 @@
     <h1 id="encabezado">...</h1>
 
     <script>
+        const btnUndo = document.getElementById('btnUndo');
+        const tituloEncabezado = document.getElementById('encabezado');
+        const inputEncabezado = document.getElementById('inputEncabezado');
 
-        /*
-        INSTRUCCIONES:
-        
-        1.  Codifica la función modificarEncabezado del botón "btnActualizacion" 
-            para que tome el valor del input "inputEncabezado" para cambiar el h1 "encabezado"
-
-        2.  Valida que el valor del input no sea vacío, si esta vacío notifica al usuario con alert() de que 
-            el valor no puede ser vacío
-
-        3.  Agrega el evento `click` al botón "btnUndo", intenta codificar una función callback 
-            para que pueda realizar la función de establecer el encabezado a un título anterior
-
-        4.  Habilita el botón "btnUndo" una vez que se hayan establecido al menos 2 títulos
-                *   Puedes usar un contador para saber cuantas veces se han establecido
-                    así podrás saber cuando desbloquear el botón
-        */
-
-        const btnUndo = document.getElementById('btnUndo')
-        const tituloEncabezado = document.getElementById('encabezado')
-        const inputEncabezado = document.getElementById('inputEncabezado')
+        let titulosAnteriores = [];
 
         function modificarEncabezado() {
-            /* Tu código aquí */
+            const nuevoTitulo = inputEncabezado.value.trim();
+
+            if (nuevoTitulo !== '') {
+                // Guardar el título actual en el array de títulos anteriores
+                titulosAnteriores.push(tituloEncabezado.innerText);
+
+                // Establecer el nuevo encabezado
+                tituloEncabezado.innerText = nuevoTitulo;
+
+                // Limpiar el input
+                inputEncabezado.value = '';
+
+                // Habilitar el botón "btnUndo" si hay al menos 2 títulos anteriores
+                if (titulosAnteriores.length >= 2) {
+                    btnUndo.disabled = false;
+                }
+            } else {
+                alert('El valor no puede ser vacío');
+            }
         }
+
+        // Agregar evento click al botón "btnUndo"
+        btnUndo.addEventListener('click', function() {
+            // Obtener el último título anterior
+            const ultimoTituloAnterior = titulosAnteriores.pop();
+
+            // Restablecer el encabezado con el último título anterior
+            tituloEncabezado.innerText = ultimoTituloAnterior;
+
+            // Deshabilitar el botón "btnUndo" si ya no hay títulos anteriores
+            if (titulosAnteriores.length < 2) {
+                btnUndo.disabled = true;
+            }
+        });
     </script>
 </body>
 
