@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
 
   appName:string = 'fundamentals-app';
   angularLogo:string = "https://angular.io/assets/images/logos/angular/angular.svg"
+  title: string = 'Mi Aplicación Angular';
 
   btnDisabled:boolean = true
   email:string = "edu@eml.run"
@@ -55,22 +56,24 @@ export class AppComponent implements OnInit {
 
   miPokedex: Pokemon[] = [];
 
+  nuevoPokemon: string = '';
+
   ngOnInit(): void {
-      fetch(`https://pokeapi.co/api/v2/pokemon?limit=8&offset=${Math.floor(Math.random() * 501)}`)
+    fetch(`https://pokeapi.co/api/v2/pokemon?limit=8&offset=${Math.floor(Math.random() * 501)}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data.results)
-        this.miPokedex = data.results
-      })
-
-      /*
-      AQUÍ PUEDES CONTINUAR CON EL EJERCICIO PARA OBTENER LA IMAGEN DEL POKÉMON
-        -> Recuerda revisar el API de https://pokeapi.co/ <-
-      */
-
+        this.miPokedex = data.results;
+  
+        // Para cada Pokémon, realiza una nueva solicitud para obtener más detalles, incluida la URL de la imagen.
+        this.miPokedex.forEach(pokemon => {
+          fetch(pokemon.url)
+            .then((response) => response.json())
+            .then((pokemonDetails) => {
+              // Asigna la URL de la imagen al Pokémon correspondiente
+              pokemon.imageURL = pokemonDetails.sprites.front_default;
+            });
+        });
+      });
   }
-
-  nuevoPokemon: string = "";
-
-
-}
+}   

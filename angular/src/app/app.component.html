@@ -91,16 +91,19 @@
     </ul>
 
     <h4>Mi Pokedex</h4>
-    <div class="pokemons">
-      <div *ngFor="let miPokemon of miPokedex">
-        <a href={{miPokemon.url}} target="_blank">
-          <span>{{ miPokemon.name }}</span>
-        </a>
-      </div>
-
+    <div class="pokemons">    
       <!--
         AQUÍ PUEDES AGREGAR EL HTML NECESARIO PARA LA IMAGEN DEL POKÉMON
        -->
+      <!-- #region ngFor-->
+      <div *ngFor="let miPokemon of miPokedex">
+        <a href={{miPokemon.url}} target="_blank">
+          <span>{{ miPokemon.name }}</span>
+          <img [src]="miPokemon.imageURL" alt="{{ miPokemon.name }} Image" width="50" height="50" />
+        </a>
+      </div>
+<!-- #endregion -->
+       
 
     </div>
     <!-- #endregion -->
